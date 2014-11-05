@@ -1,0 +1,20 @@
+<project name="vse-ant-sample" default="" basedir=".">
+	<property name="LISA_HOME" value="/Users/looth/lisa" />
+	<property name="lisa.bin.dir" value="${LISA_HOME}/bin" />
+	<property name="lisa.lib.dir" value="${LISA_HOME}/lib" />
+
+	<typedef resource="vse-ant-tasks.properties" classpath="itkoext-vse-ant.jar">
+		<classpath>
+			<fileset dir="lib" includes="*.jar" />
+			<fileset dir="${lisa.bin.dir}" includes="*.jar" />
+			<fileset dir="${lisa.lib.dir}" includes="*.jar" />
+		</classpath>
+	</typedef>
+
+	<target name="vsmerge">
+		<!--		<vsmerge lisahome="${LISA_HOME}" name="UserControl" path="${LISA_HOME}/examples/VServices/list-users-raw-traffic.xml" /> -->
+		<vsmerge lisahome="${LISA_HOME}" name="UserControl" path="${LISA_HOME}/examples/VServices/list-users-si.xml" />
+	</target>
+
+</project>
+

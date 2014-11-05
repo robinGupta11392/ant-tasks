@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VSModel name="TLGBanActivitiesConvBean" version="5">
+
+<meta><create author="vk499e" buildNumber="5.0.26.17" date="08/12/2011" host="wacdtl02aj8586" version="5.0.26"/><lastEdited author="vk499e" buildNumber="5.0.26.17" date="08/25/2011" host="wacdtl02aj8586" version="5.0.26"/></meta>
+
+<id>39333136343964322D306438312D3438</id>
+<IsInProject>true</IsInProject>
+<sig>ZWQ9MyZ0Y3Y9NSZsaXNhdj01LjAuMjYgKDUuMC4yNi4xNykmbm9kZXM9LTk0MDE0Mjc3OQ==</sig>
+<subprocess>false</subprocess>
+
+<initState>
+</initState>
+
+<resultState>
+</resultState>
+
+<deletedProps>
+</deletedProps>
+
+      <Companion type="com.itko.lisa.vse.stateful.protocol.java.JavaProtocolCompanion">
+      </Companion>
+
+    <Node log="" name="Java Listen" next="Virtual Service Router" quiet="true" think="0" type="com.itko.lisa.vse.stateful.protocol.java.listen.JavaListenStep" useFilters="true" version="1"> 
+
+
+      <!-- Assertions -->
+<CheckResult assertTrue="true" name="If being efficient" type="com.itko.lisa.vse.stateful.AssertOnExecutionMode">
+<log>Current execution mode is Most Efficient, branching to VS Image Response Selection</log>
+<then>VS Image Response Selection</then>
+<valueToAssertKey/>
+        <executionMode>EFFICIENT</executionMode>
+</CheckResult>
+
+<outputAsObject>true</outputAsObject>
+<onExceptionStep>abort</onExceptionStep>
+<TargetAgents>hstst491-MOBI-BILLING-JavaAgent</TargetAgents>
+<TargetClasses>amdocs.TlgServer.sessions.implementation.BanActivitiesConvBean_ua4dn7_EOImpl_1030_WLStub</TargetClasses>
+<TargetClasses>amdocs.TlgServer.sessions.implementation.BanActivitiesConvBean_ua4dn7_HomeImpl_1030_WLStub</TargetClasses>
+    </Node>
+
+
+    <Node log="" name="Virtual Service Router" next="VS Image Response Selection" quiet="true" think="0" type="com.itko.lisa.vse.stateful.VSRouterStep" useFilters="true" version="1"> 
+
+<onerror>abort</onerror>
+<script>// This script must return either an enum entry from ExecutionMode or
+// a string that is the name of an enum entry.  The DYNAMIC entry may
+// not be returned.  It will be executed for DYNAMIC execution mode
+// only.
+import com.itko.lisa.vse.ExecutionMode;
+
+return ExecutionMode.EFFICIENT;
+</script>
+    </Node>
+
+
+    <Node log="" name="VS Image Response Selection" next="Java Respond" quiet="true" think="0" type="com.itko.lisa.vse.stateful.ConversationalStep" useFilters="true" version="1"> 
+
+
+      <!-- Assertions -->
+<CheckResult assertTrue="true" name="If tracking" type="com.itko.lisa.vse.stateful.AssertOnExecutionMode">
+<log>Current execution mode is Transaction Tracking, branching to Virtual Service Tracking</log>
+<then>Virtual Service Tracking</then>
+<valueToAssertKey/>
+        <executionMode>TRACK</executionMode>
+</CheckResult>
+
+<traffic>BanActivitiesConvBean</traffic>
+<requestPropertyName>lisa.vse.request</requestPropertyName>
+<outputAsObject>true</outputAsObject>
+<onExceptionStep>abort</onExceptionStep>
+    </Node>
+
+
+    <Node log="" name="Java Respond" next="Java Listen" quiet="false" think="0" type="com.itko.lisa.vse.stateful.protocol.java.respond.JavaRespondStep" useFilters="true" version="1"> 
+
+<responseList>lisa.vse.response</responseList>
+<onExceptionStep>abort</onExceptionStep>
+    </Node>
+
+
+    <Node log="" name="Virtual Service Tracking" next="Java Respond" quiet="true" think="0" type="com.itko.lisa.vse.stateful.VSTrackingStep" useFilters="true" version="1"> 
+
+<imageResponseProperty>lisa.vse.image.response</imageResponseProperty>
+<liveResponseProperty>lisa.vse.live.response</liveResponseProperty>
+<onExceptionStep>abort</onExceptionStep>
+    </Node>
+
+
+    <Node log="" name="end" next="fail" quiet="true" think="0h" type="com.itko.lisa.test.NormalEnd" useFilters="true" version="1"> 
+
+    </Node>
+
+
+    <Node log="" name="fail" next="fail" quiet="true" think="0h" type="com.itko.lisa.test.Abend" useFilters="true" version="1"> 
+
+    </Node>
+
+
+    <Node log="The test was aborted" name="abort" next="fail" quiet="true" think="0h" type="com.itko.lisa.test.AbortStep" useFilters="true" version="1"> 
+
+    </Node>
+
+
+</VSModel>

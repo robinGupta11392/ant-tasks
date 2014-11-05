@@ -1,0 +1,92 @@
+<project name="vse-ant-sample" default="" basedir=".">
+
+	<property name="dist.lib.dir" value="./dist" />
+	<property name="LISA_HOME" value="/Users/vamsikurukuri/itko/lisa/server/5.0.27" />
+	<property name="lisa.bin.dir" value="${LISA_HOME}/bin" />
+	<property name="lisa.lib.dir" value="${LISA_HOME}/lib" />
+
+	<property name="images.dir.path" value="${basedir}/test-data/vse-project/VServices/Images" />
+	<property name="services.dir.path" value="${basedir}/test-data/vse-project/VServices" />
+	<property name="config.file" value="${basedir}/test-data/vse-project/Configs/project.config" />
+
+
+	<typedef file="${basedir}/src/conf/vse-ant-tasks.properties">
+		<classpath>
+			<fileset dir="${dist.lib.dir}" includes="**/*.jar" />
+			<fileset dir="${lisa.bin.dir}" includes="**/*.jar" />
+			<fileset dir="${lisa.lib.dir}" includes="**/*.jar" />
+		</classpath>
+	</typedef>
+
+	<target name="dist">
+	</target>
+
+	<target name="test-vse-level-batch-operations" depends="dist">
+		<siimport lisahome="${LISA_HOME}" all="true" imagesdirpath="${images.dir.path}" force="true"/>
+		<siexport lisahome="${LISA_HOME}" all="true" imagesdirpath="${images.dir.path}" />
+		<vsdeploy lisahome="${LISA_HOME}" all="true" servicesdirpath="${services.dir.path}" configfilepath="${config.file}" />
+		<start lisahome="${LISA_HOME}" all="true" servicesdirpath="${services.dir.path}" />
+		<stop lisahome="${LISA_HOME}" all="true" servicesdirpath="${services.dir.path}" />
+		<vsremove lisahome="${LISA_HOME}" all="true"/>
+		<sidelete lisahome="${LISA_HOME}" all="true"/>
+	</target>
+
+	<target name="siimport" depends="dist">
+		<siimport lisahome="${LISA_HOME}" />
+	</target>
+
+	<target name="siexport" depends="dist">
+		<siexport lisahome="${LISA_HOME}" name="sitest" todir="${si.export.dir}" verbose="false" raw="false" />
+	</target>
+
+	<target name="siexport-all" depends="dist">
+		<siexport lisahome="${LISA_HOME}" todir="${si.export.dir}" all="true" />
+	</target>
+
+	<target name="sidelete" depends="dist">
+		<sidelete lisahome="${LISA_HOME}" name="sitest" />
+	</target>
+
+	<target name="sidelete-all" depends="dist">
+		<sidelete lisahome="${LISA_HOME}" all="true" />
+	</target>
+
+	<target name="vsdeploy" depends="dist">
+		<vsdeploy lisahome="${LISA_HOME}" path="${test.data.dir}/vstest.vsm" config="" threads="1" thinktime="10" restart="true" />
+	</target>
+
+	<target name="vsdeploy-all" depends="dist">
+		<vsdeploy lisahome="${LISA_HOME}" path="${test.data.dir}/vs" all="true" config="" threads="1" thinktime="10" restart="true" />
+	</target>
+
+	<target name="vsmerge" depends="dist">
+		<vsdeploy lisahome="${LISA_HOME}" name="vstest" path="${test.data.dir}/vstest2-raw.xml" />
+	</target>
+
+	<target name="vsremove" depends="dist">
+		<vsremove lisahome="${LISA_HOME}" name="vstest" />
+	</target>
+
+	<target name="vsremove-all" depends="dist">
+		<vsremove lisahome="${LISA_HOME}" all="true" />
+	</target>
+
+	<target name="start" depends="dist">
+		<vsstart lisahome="${LISA_HOME}" name="vstest" />
+	</target>
+
+	<target name="start-all" depends="dist">
+		<vsstart lisahome="${LISA_HOME}" all="true" />
+	</target>
+
+	<target name="stop" depends="dist">
+		<vsstop lisahome="${LISA_HOME}" name="vstest" />
+	</target>
+
+	<target name="stop-all" depends="dist">
+		<vsstop lisahome="${LISA_HOME}" all="true" />
+	</target>
+
+
+</project>
+

@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+
+<Project>
+<Name>vse-project</Name>
+<Notes>
+
+</Notes>
+<ActiveConfig>
+{{LISA_PROJ_ROOT}}/Configs/apple-web.config
+</ActiveConfig>
+</Project>

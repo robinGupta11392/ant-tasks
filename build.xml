@@ -1,0 +1,14 @@
+<project name="lisaext-vse-ant-tasks" default="dist" basedir=".">
+
+    <import file="../itkoext-build/ant-common.xml"/>
+
+    <!-- ================================================================= -->
+    <!-- JAR the project code                                              -->
+    <!-- ================================================================= -->
+    <target name="pre-jar" extensionOf="pre-jar-hook">
+        <copy todir="${javac.dest}">
+            <fileset dir="${conf.dir}" includes="vse-ant-tasks.properties" />
+        </copy>
+    </target>
+</project>
+

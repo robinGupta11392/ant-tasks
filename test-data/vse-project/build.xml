@@ -1,0 +1,6 @@
+<project name="tlg-api-virtualization" basedir="." default="help">
+	<property name="lisa.proj.root" value="${basedir}" />
+	<property file="${basedir}/build.properties" />
+	<property file="../vse-ant-mgr.properties" />
+	<import file="../vse-ant-mgr.xml"/>
+</project>
